@@ -1,0 +1,174 @@
+.btn-file, .btn-file-autoupload {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file], .btn-file-autoupload input[type=file]{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;
+}
+.right-inner-addon span {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 30px;
+}
+.left-inner-addon span {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.textarea-sm  {
+    overflow:hidden;
+    resize:none;
+}
+
+.btn-spaced-left { margin-left:10px; }
+.btn-spaced-right { margin-right:10px; }
+.centered-text { text-align:center; }
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    padding-top:32px;
+}
+.uwa-alert {
+    max-width:80%;
+    margin:35px auto;
+    background-color: #e3f6ff;
+    border:1px solid #22cadb;
+    overflow:hidden;
+    border-radius:4px;
+    box-shadow: 1px 1px 0 1px rgba(0,0,0,0.05);
+}
+.uwa-alert.dimmer {
+    box-shadow:0 0 0 1000px rgba(0,0,0,0.6), 0 0 25px rgba(0,0,0,0.25);
+    position:absolute;
+    z-index:300;
+    left:0;
+    right:0;
+}
+.hidden { display:none; }
+.uwa-alert .alert-body p {
+    width: 80%;
+    margin: 10px 0;
+}
+.uwa-alert .alert-body {
+    padding:10px 25px;
+    position:relative;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.5);
+}
+.uwa-alert .alert-footer {
+    text-align: right;
+    padding:10px;
+    border-top:1px solid #22cadb;
+    background-color:rgba(0,140,140,0.3);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+.uwa-alert .alert-footer .a-hold {
+    font-weight:bold;
+    max-width:22%;
+    display:inline-block;
+    font-size:70%;
+    text-align:left;
+    margin-top:1px;
+    float:left;
+}
+.uwa-alert .alert-footer .a-hold a {
+    color:#006dcc;
+    opacity:0.8;
+}
+.uwa-alert .alert-footer .btn {
+    font-weight:bold;
+    margin-left:6px;
+}
+
+.uwa-alert .alert-footer .btn.btn-default {
+    border-color:#777;
+}
+.uwa-alert h2 {
+    margin-top:15px;
+}
+.uwa-alert h3.float.logo {
+    background-position:center right;
+    background-size:contain;
+    display:inline-block;
+    height:80%;
+    width:200px;
+    min-height:0;
+    position:absolute;
+    margin:0;
+    padding:0;
+    top:0px;
+    right:25px;
+    opacity:0.5;
+}
+
+span#secure-transaction {
+    float:right;
+    font-size:60%;
+    padding-top:7px;
+    font-weight:bold;
+    color:#ccc;
+}
+span#secure-transaction small {
+    font-size:100%;
+    color:inherit;
+    margin-left:5px;
+}
+.row.centered {
+    position: relative;
+}
+.centered.pheme {
+    text-align:center;
+    padding-top:38px;
+    padding-bottom:38px;
+    padding-left:15px;
+    font-weight:bold;
+    color:rgba(0,140,140,0.4);
+}
+.bstrap-icon {
+    font-size:300%;
+}
+
+.centered-footer {
+    text-align:center;
+}
+
+.r-align {
+    margin-top:5px;
+    float:right;
+    color:#aaa;
+}
+
+div.empty-for-loop {
+    color:#aaa;
+    text-align:center;
+    padding:25px;
+}
