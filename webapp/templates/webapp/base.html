@@ -16,7 +16,7 @@
     <script type="text/javascript" src="{% static 'webapp/js/bootstrap-datetimepicker.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webapp/js/grant_application.js' %}"></script>
     <script type="text/javascript" src="{% static 'webapp/js/search.js' %}"></script>
-    {% include 'autocomplete_light/static.html' %}
+{#    {% include 'autocomplete_light/static.html' %}#}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <script type="text/javascript" src="{% static 'webapp/js/bootstrap-datepicker.js' %}"></script>
@@ -79,7 +79,7 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="{% url 'home' %}">
+                    <a class="navbar-brand" href="{% url 'index:home' %}">
                       <img src="{% static 'webapp/images/forlogo-small.png' %}" title="Forrest" alt="Forrest" style="width:164px;height:100px;"/>
 
 </a>
@@ -94,56 +94,56 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
                 {% if user.is_authenticated %}
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-left">
-                                <li><a href="{% url 'home' %}">Rounds</a></li>
-                            {% if user.userpermissiontype.type == "STUDENT" or user.is_superuser%}
-                                <li><a href="{% url 'user:my_application' %}">My Applications</a></li>
+{#                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+{#                        <ul class="nav navbar-nav navbar-left">#}
+{#                                <li><a href="{% url 'index:home' %}">Rounds</a></li>#}
+{#                            {% if user.userpermissiontype.type == "STUDENT" or user.is_superuser%}#}
+{#                                <li><a href="{% url 'user:my_application' %}">My Applications</a></li>#}
 {#                            <li class="divider"></li>#}
 {#                            <li><a href="{% url 'reviewer:login_home' %}">My Reviews{% if count_new_nominations != 0 and count_new_nominations %}#}
 {#                                <span class="label label-danger label-as-badge">{{ count_new_nominations }}</span>#}
 {#                                {% endif %}#}
 {#                            </a></li>#}
-                            {% endif %}
-
-                            {% if user.userpermissiontype.type != "STUDENT" or user.is_superuser %}
-                                <li><a href="{% url 'staff:submitted_applications' %}">Submitted Applications</a></li>
+{#                            {% endif %}#}
+{##}
+{#                            {% if user.userpermissiontype.type != "STUDENT" or user.is_superuser %}#}
+{#                                <li><a href="{% url 'staff:submitted_applications' %}">Submitted Applications</a></li>#}
 {#                                {% if user.profile.type == user.profile.TYPE_READ_ONLY or user.profile.type == user.profile.TYPE_SUPER %}#}
 {#                                    <li class="divider"></li>#}
 {#                                    <li><a href="{% url 'read_only:login_home' %}">Applications List</a></li>#}
 {#                                {% endif %}#}
-
-                                {% if user.profile.type == user.profile.TYPE_COORDINATOR or  user.profile.type == user.profile.TYPE_SUPER or user.profile.type == user.profile.TYPE_ADMIN %}
-                                    <li class="divider"></li>
+{##}
+{#                                {% if user.profile.type == user.profile.TYPE_COORDINATOR or  user.profile.type == user.profile.TYPE_SUPER or user.profile.type == user.profile.TYPE_ADMIN %}#}
+{#                                    <li class="divider"></li>#}
 {#                                    <li><a href="{% url 'coordinator:login_home' %}">Applications for Approval</a></li>#}
-                                {% endif %}
-                            {% endif %}
-
-                        </ul>
-
-
-                        <ul class="nav navbar-nav">
-                            {% block nav %}
-
-                            {% endblock nav %}
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-right">
-
-                            {% if user.is_masked %}
-                                <li>
-                                    <a href="{% url 'unmask' %}">Unmask</a>
-                                </li>
-                            {% endif %}
-
-                            {% if user.userpermissiontype.type == user.userpermissiontype.USER_TYPE_SUPER or user.userpermissiontype.type == user.userpermissiontype.USER_TYPE_ADMIN %}
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        Admin <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{% url 'staff:create_new_round' %}">New Round</a></li>
-                                        <li><a href="{% url 'staff:view_staff_members' %}">Staff Members</a></li>
+{#                                {% endif %}#}
+{#                            {% endif %}#}
+{##}
+{#                        </ul>#}
+{##}
+{##}
+{#                        <ul class="nav navbar-nav">#}
+{#                            {% block nav %}#}
+{##}
+{#                            {% endblock nav %}#}
+{#                        </ul>#}
+{##}
+{#                        <ul class="nav navbar-nav navbar-right">#}
+{##}
+{#                            {% if user.is_masked %}#}
+{#                                <li>#}
+{#                                    <a href="{% url 'unmask' %}">Unmask</a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{##}
+{#                            {% if user.userpermissiontype.type == user.userpermissiontype.USER_TYPE_SUPER or user.userpermissiontype.type == user.userpermissiontype.USER_TYPE_ADMIN %}#}
+{#                                <li class="dropdown">#}
+{#                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{#                                        Admin <b class="caret"></b>#}
+{#                                    </a>#}
+{#                                    <ul class="dropdown-menu">#}
+{#                                        <li><a href="{% url 'staff:create_new_round' %}">New Round</a></li>#}
+{#                                        <li><a href="{% url 'staff:view_staff_members' %}">Staff Members</a></li>#}
 {#                                            <li><a href="{% url 'staff:research_coordinators_edit' %}">Research#}
 {#                                                Coordinators</a></li>#}
 {#                                            {% if user.profile.type == user.profile.TYPE_SUPER %}#}
@@ -152,51 +152,51 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
 {#                                            {% endif %}#}
 {#                                            <li><a href="{% url 'staff:summary_applications' %}">Summary</a></li>#}
 {#                                            <li><a href="{% url 'staff:report' %}">Report</a></li>#}
-                                    </ul>
-                                </li>
-
-
-                            {% endif %}
-
-
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-                                    {% if user.profile.type == user.profile.TYPE_REGULAR %}
-                                        <span class="text-success">
-                                    {% elif user.profile.type == user.profile.TYPE_REVIEWER %}
-                                        <span class="text-info">
-                                    {% elif user.profile.type == user.profile.TYPE_COORDINATOR %}
-                                        <span class="text-danger">
-                                    {% else %}
-                                        <span>
-                                    {% endif %}
-                                    {% bootstrap_icon 'user' %}
-                                    </span>
-                                    <span class="nav-user-name">{% if user.is_masked %} <strong class="text-info">Masquerading as: </strong>{% endif %}
-                                    {{ user.first_name }}</span>
-
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-
-                                    {% if user.is_superuser %}
-                                        <li><a href="{% url 'admin:index' %}">{% bootstrap_icon 'cog' %} Django Admin</a>
-                                        </li>
-                                        <li><a href="{% url 'mask' %}">Masquerade</a></li>
+{#                                    </ul>#}
+{#                                </li>#}
+{##}
+{##}
+{#                            {% endif %}#}
+{##}
+{##}
+{##}
+{#                            <li class="dropdown">#}
+{#                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{##}
+{#                                    {% if user.profile.type == user.profile.TYPE_REGULAR %}#}
+{#                                        <span class="text-success">#}
+{#                                    {% elif user.profile.type == user.profile.TYPE_REVIEWER %}#}
+{#                                        <span class="text-info">#}
+{#                                    {% elif user.profile.type == user.profile.TYPE_COORDINATOR %}#}
+{#                                        <span class="text-danger">#}
+{#                                    {% else %}#}
+{#                                        <span>#}
+{#                                    {% endif %}#}
+{#                                    {% bootstrap_icon 'user' %}#}
+{#                                    </span>#}
+{#                                    <span class="nav-user-name">{% if user.is_masked %} <strong class="text-info">Masquerading as: </strong>{% endif %}#}
+{#                                    {{ user.first_name }}</span>#}
+{##}
+{#                                    <b class="caret"></b>#}
+{#                                </a>#}
+{#                                <ul class="dropdown-menu">#}
+{##}
+{#                                    {% if user.is_superuser %}#}
+{#                                        <li><a href="{% url 'admin:index' %}">{% bootstrap_icon 'cog' %} Django Admin</a>#}
+{#                                        </li>#}
+{#                                        <li><a href="{% url 'mask' %}">Masquerade</a></li>#}
 {#                                        <li><a href="{% url 'staff:my_mask' %}">Masquerade</a></li>#}
-
-                                    {% endif %}
-
+{##}
+{#                                    {% endif %}#}
+{##}
 {#                                    <li><a href="{% url 'auth:manageAccount' %}">Manage account</a></li>#}
 {#                                    <li><a href="{% url 'auth:passwordChange' %}">Change password</a></li>#}
 {#                                    <li class="divider"></li>#}
-                                    <li><a href="{% url 'auth:logout' %}">Log out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+{#                                    <li><a href="{% url 'auth:logout' %}">Log out</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
                     <!-- /.navbar-collapse -->
                     </div>
 

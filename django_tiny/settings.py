@@ -25,7 +25,15 @@ SECRET_KEY = 'oo($qas+!czh(yo+zg*(tuo935pdbz0*_qba_)!91bt47-^-!@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+TEMPLATE_DEBUG = True
+
 ALLOWED_HOSTS = []
+
+ADMINS = [
+
+    ('James Gong', 'james.gong927@gmail.com'),
+    # ('Tianyi CHEN','tianyi.chen@csp.uwa.edu.au')
+]
 
 
 # Application definition
@@ -39,7 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'webapp',
     'bootstrap3',
-    'django_comments',
+    # 'django_comments',
     'masquerade',
 )
 
@@ -87,6 +95,7 @@ DATABASES = {
     }
 }
 
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
