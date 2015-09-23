@@ -1,0 +1,60 @@
+{% extends 'webapp/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block head %}
+    <script type="text/javascript">
+        function register()  {
+            window.location = "{% url 'auth:registration' %}";
+        }
+    </script>
+{% endblock head %}
+
+{% block body %}
+
+    <div style="text-align: center; width: 400px; margin-right: auto; margin-left: auto;">
+        <form action="{% url 'auth:login' %}" method="post" class="form-horizontal">
+            {% csrf_token %}
+
+            <input type="hidden" name="next" value="{{ next }}"/>
+
+            <div class="page-header">
+
+                <img src="{% static 'webapp/images/forlogo-trim.png' %}" title="Forrest" alt="Forrest" style="width: 300px; height: 214px;"/>
+                <h2>Forrest Scholarship Application</h2>
+            </div>
+
+
+            <div class="form-group">
+                <input type="text" name="username" value="" id="username" class="form-control"
+                       placeholder="Email">
+            </div>
+
+            <div class="form-group">
+
+                <input type="password" name="password" value="" id="password" class="form-control"
+                       placeholder="Password">
+            </div>
+            <div class="form-group pull-right">
+                <button type="submit" class="btn btn-primary">{% bootstrap_icon 'user' %} Login</button>
+            </div>
+
+            <div class="form-group" style="text-align: left">
+                <a href="{% url 'password_reset' %}" class="register">Forgotten password?</a>
+            </div>
+
+            <br />
+            <div class="form-group" style="text-align: left">
+                <button type="button" class="btn btn-primary" style="width: 100%" onclick="register()"> Click here to register.</button>
+            </div>
+
+            <div class="form-group">
+            </div>
+
+        </form>
+    </div>
+
+
+
+
+{% endblock %}

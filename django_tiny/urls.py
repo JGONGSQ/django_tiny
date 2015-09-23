@@ -18,8 +18,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', 'webapp.views.home'),
-    url(r'^admin/', include(admin.site.urls)),
     url(r'', include('webapp.urls', namespace='index')),
+
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^user/', include('webapp.urls_user', namespace='user')),
-    # url(r'^$', 'webapp.views.home', name='home'),
+    url(r'^registration/', include('webapp.urls_auth', namespace='auth')),
 ]

@@ -81,8 +81,9 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
 
                     <a class="navbar-brand" href="{% url 'index:home' %}">
                       <img src="{% static 'webapp/images/qq_one.jpg' %}" title="corneliaQ" alt="corneliaQ" style="width:95px;height:95px;"/>
+                    </a>
+{#                    <a>This is the user {{ user }}</a>#}
 
-</a>
 {#                        {% if user.is_authenticated %}#}
 {#                            <img src="{% static 'webapp/images/uwa_icon.jpeg' %}" style="width:50px;height:50px;margin-top:-3px;"/>#}
 {#                        {% else %}#}
@@ -91,7 +92,20 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
 {#                    </a>#}
                 </div>
 
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+    {#                        <li><a href="{% url 'auth:manageAccount' %}">Manage account</a></li>#}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        {{ user.first_name }} <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a>123</a></li>
+                                <li><a>123</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
 {#                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
@@ -197,10 +211,25 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
 {#                            </li>#}
 {#                        </ul>#}
 {#                    </div>#}
-                    <!-- /.navbar-collapse -->
-                    </div>
-
+{#                    <!-- /.navbar-collapse -->#}
+{#                    </div>#}
+                {% else %}
+                        <ul class="nav navbar-nav navbar-right">
+                        <li><a>Login</a></li>
+{#                        <li class="dropdown">#}
+    {#                        <li><a href="{% url 'auth:manageAccount' %}">Manage account</a></li>#}
+{#                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{#                                        {{ user.first_name }} <b class="caret"></b>#}
+{#                            </a>#}
+{#                            <ul class="dropdown-menu">#}
+{#                                <li><a>123</a></li>#}
+{#                                <li><a>123</a></li>#}
+{#                            </ul>#}
+{#                        </li>#}
+                    </ul>
                 {% endif %}
+                </div>
+            </div>
             <!-- /.container-fluid -->
         </nav>
 
@@ -211,7 +240,7 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
 
 {% bootstrap_messages %}
 
-    <div class="container" >
+    <div class="container">
 
         {% if user.is_authenticated and user.profile.type != 'COORDINATOR' and user.profile.type != 'ADMIN' and user.profile.type != 'SUPER'%}
             {% if not user.profile.is_uwa_affiliated_basic_check and not on_pheme_link_page %}
@@ -222,8 +251,8 @@ This bug has been fixed in a copy of the template contained in webapp i.e. 'weba
 
         {% block body %}
         {% endblock %}
+    </div>
 
-</div>
 {#    {% include 'webapp/partials/support/_modal_support.html' %}#}
 {#    {% include 'webapp/partials/support/_modal_missing_nomination.html' %}#}
 
