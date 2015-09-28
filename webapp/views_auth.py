@@ -51,7 +51,7 @@ def webapp_login(request):
             else:
                 return HttpResponseRedirect(reverse('home'))
         else:
-            if next in request.GET:
+            if 'next' in request.GET:
                 return render(request, 'webapp/registration/login.html', {'next': request.GET['next']})
             else:
                 return render(request, 'webapp/registration/login.html')
