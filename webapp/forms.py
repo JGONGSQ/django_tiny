@@ -68,3 +68,66 @@ class PasswordResetForm(forms.Form):
             else:
                 html_email = None
             send_mail(subject, email, from_email, [user.email], html_message=html_email)
+
+
+class UserRegistrationForm(UserCreationForm):
+
+    def validate(value):
+        count = 0
+        if value.isdigit():
+            for digit in value:
+                count = count + 1
+            if count == 8:
+                raise ValidationError('This username is reserved, please choose another one')
+
+    def is_unique_email(value):
+        if User.objects.filter(email=value):
+            raise ValidationError('This email address has already been registered.')
+
+    username = forms.CharField(min_length=5, required=False, max_length=30,
+                               widget=forms.TextInput(
+                                   attrs={'class': 'form-control',
+                                          'placeholder': 'Minimum 5 characters, maximum 30 characters'
+                                   }
+                               ),
+                               validators=[validate])
+
+    first_name = forms.CharField(required=True, max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(required=True, max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(
+                                 attrs={
+                                     'class': 'form-control'
+                                 }
+                             ),
+                             validators=[is_unique_email])
+    password1 = forms.CharField(min_length=6, max_length=32,
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Minimum 6 characters'}),
+                                label='Select a Password')
+    password2 = forms.CharField(min_length=6, max_length=32,
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Please re-enter your password'}),
+                                label='Confirm Password', )
+    password1.widget.attrs.update({'class': 'form-control'})
+    password2.widget.attrs.update({'class': 'form-control'})
+
+    # captcha = CaptchaField()
+    # captcha.widget.attrs.update({'class': 'form-control', 'style': 'width: 100%'})
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+
+    def save(self, commit=True):
+        user = super(UserRegistrationForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+
+        if commit:
+            user.save()
+
+        return user
+
+
+class PasswordChangeForm(forms.Form):
+    current_password = forms.CharField(widget=forms.PasswordInput())
+    new_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
