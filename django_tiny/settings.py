@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 ADMINS = [
 
     ('James Gong', 'james.gong927@gmail.com'),
-    # ('Tianyi CHEN','tianyi.chen@csp.uwa.edu.au')
 ]
 
 
