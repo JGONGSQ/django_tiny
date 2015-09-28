@@ -32,38 +32,11 @@ def webapp_login(request):
 
         user = authenticate(username=username, password=password)
 
-        # try Pheme if authenticate failed
-        if user is None:
-            client = Client("https://www.socrates.uwa.edu.au/tisi/commonws.asmx?wsdl")
-            response = client.service.UserAuth(userName=request.POST['username'], password=request.POST['password'])
-
-            if 'error' in response:
-                messages.error(request, 'username/password incorrect')
-                return HttpResponseRedirect(reverse('auth:login'))
-            else:
-                result = json.loads(response[1:-1])  # remove square brackets and load into dict
-                try:
-                    user = User.objects.get(username=username)
-                    user.password = password
-                    user.backend = 'django.contrib.auth.backends.ModelBackend'
-                    user.save()
-                except User.DoesNotExist:
-                    user = User.objects.create_user(
-                        username=username,
-                        email=result['mail'],
-                        password=password,
-                        first_name=result['givenname'].capitalize(),
-                        last_name=result['sn'].capitalize(),
-                    )
-                    UserPermissionType.objects.create(user=user, type=UserPermissionType.USER_TYPE_STUDENT,
-                                                      university=UserPermissionType.UNIVERSITY_TYPE_UWA)
-                    user.backend = 'django.contrib.auth.backends.ModelBackend'
-
         # if user is not none at this point, log in
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('home'))
+                return HttpResponseRedirect(reverse('user:user_home'))
             else:
                 messages.error(request, 'This account has been disabled. Please contact support if you believe this to be a mistake.')
                 return HttpResponseRedirect(reverse('auth:login'))
@@ -87,7 +60,7 @@ def webapp_login(request):
 def webapp_logout(request):
     logout(request)
     messages.success(request, 'Logged out')
-    return HttpResponseRedirect(reverse('auth:login'))
+    return HttpResponseRedirect(reverse('home'))
 
 
 def registration(request):
