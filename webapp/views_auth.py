@@ -12,7 +12,7 @@ from django.contrib import messages
 # from webapp.utils import is_eight_digit
 # from webapp.utils_email import REGISTRATION_COMPLETE_EMAIL, send_alternate_email_confirmation
 # from webapp.forms import PasswordChangeForm, UserRegistrationForm
-from webapp.models import UserPermissionType
+from webapp.models import Permission
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -88,8 +88,8 @@ def registration(request):
             )
             new_user.backend = 'django.contrib.auth.backends.ModelBackend'
 
-            profile = UserPermissionType.objects.create(user=new_user, type=UserPermissionType.USER_TYPE_STUDENT,
-                                                        university=UserPermissionType.UNIVERSITY_TYPE_DEFAULT)
+            profile = Permission.objects.create(user=new_user, type=Permission.USER_TYPE_STUDENT,
+                                                    university=Permission.UNIVERSITY_TYPE_DEFAULT)
 
             login(request, new_user)
 

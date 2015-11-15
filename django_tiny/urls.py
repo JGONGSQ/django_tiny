@@ -22,11 +22,13 @@ from webapp.forms import *
 
 urlpatterns = [
     url(r'^$', 'webapp.views.home'),
-    url(r'', include('webapp.urls', namespace='index')),
     url(r'^home/$', webapp_view.home, name='home'),
     url(r'^admin/', include(admin.site.urls)),
+
+    # url groups
     url(r'^user/', include('webapp.urls_user', namespace='user')),
     url(r'^registration/', include('webapp.urls_auth', namespace='auth')),
+    url(r'^staff/', include('webapp.urls_staff', namespace='staff')),
 
     url(r'^password_reset/$', django_views.password_reset,
         {'template_name': 'webapp/registration/password_reset_form.html',
